@@ -1,0 +1,50 @@
+// Effect Syntax Guide: https://github.com/cocos-creator/docs-3d/blob/master/zh/material-system/effect-syntax.md
+
+CCEffect %{
+  # techniques 是一个数组
+  techniques:
+  - name: opaque
+  # passes 是 techniques 数组的第0项
+  # 同时 passes 也是一个数组，存放渲染管道描述的数组组合
+    passes:
+    # passes 数组的第0项，完整的渲染流水线
+    # vert 属性指定顶点 Shader 片段的名字，如这里的顶点 shader 片段的名字为 general-vs
+    # 根据文档介绍还可以这样子指定片段的入口函数 general-vs: vert; 那么就代替main函数，vert才是入口函数
+    - vert: general-vs:vert # builtin header
+      # frag 属性是指定片元 Shader 片段的名字，如：这里的片元 shader 片段的名字为 unlit-fs
+      # 根据文档介绍还可以这样子指定片段的入口函数 unlit-fs: frag; 那么就代替main函数，frag才是入口函数
+      frag: unlit-fs:frag
+      # properties 列出可以在 Inspector 编辑器编辑的属性
+      properties: &props
+        mainTexture:    { value: white }
+        mainColor:      { value: [1, 1, 1, 1], editor: { type: color } }
+  - name: transparent
+    passes:
+    - vert: general-vs:vert # builtin header
+      frag: unlit-fs:frag
+      # 混合模式开启
+      blendState:
+        targets:
+        - blend: true
+          blendSrc: src_alpha
+          blendDst: one_minus_src_alpha
+          blendSrcAlpha: src_alpha
+          blendDstAlpha: one_minus_src_alpha
+      properties: *props
+}%
+
+CCProgram unlit-fs %{
+  precision highp float;
+  #include <output>
+
+  in vec2 v_uv;
+  uniform sampler2D mainTexture;
+
+  uniform Constant {
+    vec4 mainColor;
+  };
+
+  vec4 frag () {
+    return CCFragOutput(mainColor * texture(mainTexture, v_uv));
+  }
+}%

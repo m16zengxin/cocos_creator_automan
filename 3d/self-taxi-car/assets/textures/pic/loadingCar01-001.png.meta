@@ -1,0 +1,73 @@
+{
+  "ver": "1.0.17",
+  "importer": "image",
+  "imported": true,
+  "uuid": "fb8502ae-3dee-4bb7-b60d-a79607227926",
+  "files": [
+    ".png",
+    ".json"
+  ],
+  "subMetas": {
+    "6c48a": {
+      "ver": "1.0.19",
+      "importer": "texture",
+      "uuid": "fb8502ae-3dee-4bb7-b60d-a79607227926@6c48a",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "premultiplyAlpha": false,
+        "anisotropy": 1,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "8d53bdae-185b-41b9-94a7-bf561ebb7c91"
+      },
+      "displayName": "loadingCar01",
+      "id": "6c48a",
+      "name": "texture"
+    },
+    "f9941": {
+      "importer": "sprite-frame",
+      "uuid": "fb8502ae-3dee-4bb7-b60d-a79607227926@f9941",
+      "displayName": "loadingCar01-001",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "ver": "1.0.8",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 0,
+        "trimY": 0,
+        "width": 195,
+        "height": 95,
+        "rawWidth": 195,
+        "rawHeight": 95,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "fb8502ae-3dee-4bb7-b60d-a79607227926@6c48a",
+        "atlasUuid": ""
+      }
+    }
+  },
+  "userData": {
+    "type": "sprite-frame",
+    "redirect": "fb8502ae-3dee-4bb7-b60d-a79607227926@f9941"
+  }
+}

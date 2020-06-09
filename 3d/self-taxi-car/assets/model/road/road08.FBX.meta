@@ -1,0 +1,123 @@
+{
+  "ver": "1.3.19",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "f5f76a6a-8ab9-421d-b405-7fdf90575d20",
+  "files": [],
+  "subMetas": {
+    "44034": {
+      "ver": "1.0.9",
+      "importer": "gltf-mesh",
+      "uuid": "f5f76a6a-8ab9-421d-b405-7fdf90575d20@44034",
+      "imported": true,
+      "files": [
+        ".json",
+        ".bin"
+      ],
+      "subMetas": {},
+      "userData": {
+        "gltfIndex": 0
+      },
+      "displayName": "",
+      "id": "44034",
+      "name": "001.mesh"
+    },
+    "3bd65": {
+      "ver": "1.0.2",
+      "importer": "gltf-embeded-image",
+      "uuid": "f5f76a6a-8ab9-421d-b405-7fdf90575d20@3bd65",
+      "imported": true,
+      "files": [
+        ".jpg",
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "gltfIndex": 0
+      },
+      "displayName": "",
+      "id": "3bd65",
+      "name": "road03.jpg.image"
+    },
+    "4b8d7": {
+      "ver": "1.0.19",
+      "importer": "texture",
+      "uuid": "f5f76a6a-8ab9-421d-b405-7fdf90575d20@4b8d7",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "premultiplyAlpha": false,
+        "anisotropy": 1,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "f5f76a6a-8ab9-421d-b405-7fdf90575d20@3bd65"
+      },
+      "displayName": "",
+      "id": "4b8d7",
+      "name": "贴图 #7.texture"
+    },
+    "8dbc3": {
+      "ver": "1.0.14",
+      "importer": "gltf-material",
+      "uuid": "f5f76a6a-8ab9-421d-b405-7fdf90575d20@8dbc3",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "gltfIndex": 0
+      },
+      "displayName": "",
+      "id": "8dbc3",
+      "name": "Material #90.material"
+    },
+    "215a4": {
+      "importer": "gltf-scene",
+      "uuid": "f5f76a6a-8ab9-421d-b405-7fdf90575d20@215a4",
+      "displayName": "",
+      "id": "215a4",
+      "name": "road08.prefab",
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "gltfIndex": 0
+      }
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "name": "road03.jpg",
+        "uri": "f5f76a6a-8ab9-421d-b405-7fdf90575d20@3bd65"
+      }
+    ],
+    "redirect": "f5f76a6a-8ab9-421d-b405-7fdf90575d20@215a4",
+    "assetFinder": {
+      "meshes": [
+        "f5f76a6a-8ab9-421d-b405-7fdf90575d20@44034"
+      ],
+      "skeletons": [],
+      "textures": [
+        "f5f76a6a-8ab9-421d-b405-7fdf90575d20@4b8d7"
+      ],
+      "materials": [
+        "f5f76a6a-8ab9-421d-b405-7fdf90575d20@8dbc3"
+      ],
+      "scenes": [
+        "f5f76a6a-8ab9-421d-b405-7fdf90575d20@215a4"
+      ]
+    }
+  }
+}

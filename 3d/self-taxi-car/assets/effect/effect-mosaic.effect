@@ -1,0 +1,155 @@
+// Effect Syntax Guide: https://github.com/cocos-creator/docs-3d/blob/master/zh/material-system/effect-syntax.md
+
+CCEffect %{
+  techniques:
+  - name: opaque
+    passes:
+    - vert: general-vs:vert # builtin header
+      frag: unlit-fs:frag
+      properties: &props
+        mainTexture:    { value: white }
+        mainColor:      { value: [1, 1, 1, 1], editor: { type: color } }
+        tilingOffset: { value: [1, 1, 0, 0] }
+        # X轴方块数量
+        xBlockCount:    { value: 30.0, editor: { tooltip: "X轴方向马赛克方块数量" } }
+        # Y轴方块数量
+        yBlockCount:    { value: 30.0, editor: { tooltip: "Y轴方向马赛克方块数量" } }
+  - name: transparent
+    passes:
+    - vert: general-vs:vert # builtin header
+      frag: unlit-fs:frag
+      blendState:
+        targets:
+        - blend: true
+          blendSrc: src_alpha
+          blendDst: one_minus_src_alpha
+          blendSrcAlpha: src_alpha
+          blendDstAlpha: one_minus_src_alpha
+      properties: *props
+}%
+
+CCProgram general-vs %{
+  precision mediump float;
+  #include <cc-global>
+  #include <cc-local-batch>
+  #include <input>
+
+  #if USE_VERTEX_COLOR
+    in vec4 a_color;
+    out vec4 v_color;
+  #endif
+
+  #if USE_TEXTURE
+    in vec2 a_texCoord;
+    out vec2 v_uv;
+    uniform TexCoords {
+      vec4 tilingOffset;
+    };
+  #endif
+
+  highp vec4 vert () {
+    vec4 position;
+    CCVertInput(position);
+
+    highp mat4 matWorld;
+    CCGetWorldMatrix(matWorld);
+
+    highp vec4 pos = cc_matProj * (cc_matView * matWorld) * position;
+
+    #if USE_TEXTURE
+      v_uv = a_texCoord;
+      #if FLIP_UV
+        v_uv.y = 1.0 - v_uv.y;
+      #endif
+      v_uv = v_uv * tilingOffset.xy + tilingOffset.zw;
+    #endif
+
+    #if USE_VERTEX_COLOR
+      v_color = a_color;
+    #endif
+
+    return pos;
+  }
+}%
+
+CCProgram unlit-fs %{
+  precision highp float;
+  #include <output>
+
+  in vec2 v_uv;
+  uniform sampler2D mainTexture;
+
+  #if USE_COLOR
+    uniform Constant {
+      vec4 mainColor;
+    };
+  #endif
+
+  #if USE_VERTEX_COLOR
+    in vec4 v_color;
+  #endif
+
+  #if USE_MOSAIC
+  uniform Mosaic {
+    float xBlockCount;
+    float yBlockCount;
+  };
+
+  /**
+   * 获取v_uv最终映射的马赛格格子的坐标
+   *
+   * @return 映射后坐标
+   */
+  vec2 getUvMapPos() {
+    // 计算x轴格子宽度
+    float xCount;
+    if (xBlockCount <= 0.0) {
+      xCount = 1.0;
+    } else {
+      xCount = xBlockCount;
+    }
+    float blockWidth = 1.0 / xCount;
+
+    // 计算当前 v_uv 在x轴的哪个格子上
+    float blockXIndex = floor(v_uv.x / blockWidth); 
+
+    // 同理，求出当前 v_uv 在y轴上的哪个格子
+    float yCount; 
+    if (yBlockCount <= 0.0) {
+      yCount = 1.0;
+    } else {
+      yCount = yBlockCount;
+    }
+    float blockHeight = 1.0 / yCount;
+    float blockYIndex = floor(v_uv.y / blockHeight);
+
+    // 找到该格子的中心点实际对应的uv坐标
+    return vec2(blockWidth * (blockXIndex + 0.5), blockHeight * (blockYIndex + 0.5));
+  }
+
+  #endif
+
+  vec4 frag () {
+    // return CCFragOutput(mainColor * texture(mainTexture, v_uv));
+    vec4 o = vec4(1, 1, 1, 1);
+    vec2 realPos = v_uv;
+    #if USE_MOSAIC
+    realPos = getUvMapPos();
+    #endif
+
+    #if USE_TEXTURE
+    o *= texture(mainTexture, realPos);
+    #endif
+
+    #if USE_COLOR
+      o *= mainColor;
+    #endif
+
+    #if USE_VERTEX_COLOR
+      o *= v_color;
+    #endif
+
+    return CCFragOutput(o);
+    // return CCFragOutput(mainColor * texture(mainTexture, v_uv));
+  }
+}%

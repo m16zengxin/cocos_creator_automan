@@ -1,0 +1,123 @@
+{
+  "ver": "1.3.19",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "c028e56a-4621-468f-955f-94a6e19ef4ca",
+  "files": [],
+  "subMetas": {
+    "46540": {
+      "ver": "1.0.9",
+      "importer": "gltf-mesh",
+      "uuid": "c028e56a-4621-468f-955f-94a6e19ef4ca@46540",
+      "imported": true,
+      "files": [
+        ".json",
+        ".bin"
+      ],
+      "subMetas": {},
+      "userData": {
+        "gltfIndex": 0
+      },
+      "displayName": "",
+      "id": "46540",
+      "name": "Box001.mesh"
+    },
+    "2912a": {
+      "ver": "1.0.2",
+      "importer": "gltf-embeded-image",
+      "uuid": "c028e56a-4621-468f-955f-94a6e19ef4ca@2912a",
+      "imported": true,
+      "files": [
+        ".jpg",
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "gltfIndex": 0
+      },
+      "displayName": "",
+      "id": "2912a",
+      "name": "truck01.jpg.image"
+    },
+    "a96a6": {
+      "ver": "1.0.19",
+      "importer": "texture",
+      "uuid": "c028e56a-4621-468f-955f-94a6e19ef4ca@a96a6",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "premultiplyAlpha": false,
+        "anisotropy": 1,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "c028e56a-4621-468f-955f-94a6e19ef4ca@2912a"
+      },
+      "displayName": "",
+      "id": "a96a6",
+      "name": "贴图 #1.texture"
+    },
+    "9d093": {
+      "ver": "1.0.14",
+      "importer": "gltf-material",
+      "uuid": "c028e56a-4621-468f-955f-94a6e19ef4ca@9d093",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "gltfIndex": 0
+      },
+      "displayName": "",
+      "id": "9d093",
+      "name": "Material #25.material"
+    },
+    "aef53": {
+      "importer": "gltf-scene",
+      "uuid": "c028e56a-4621-468f-955f-94a6e19ef4ca@aef53",
+      "displayName": "",
+      "id": "aef53",
+      "name": "truck01.prefab",
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "gltfIndex": 0
+      }
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "name": "truck01.jpg",
+        "uri": "c028e56a-4621-468f-955f-94a6e19ef4ca@2912a"
+      }
+    ],
+    "redirect": "c028e56a-4621-468f-955f-94a6e19ef4ca@aef53",
+    "assetFinder": {
+      "meshes": [
+        "c028e56a-4621-468f-955f-94a6e19ef4ca@46540"
+      ],
+      "skeletons": [],
+      "textures": [
+        "c028e56a-4621-468f-955f-94a6e19ef4ca@a96a6"
+      ],
+      "materials": [
+        "c028e56a-4621-468f-955f-94a6e19ef4ca@9d093"
+      ],
+      "scenes": [
+        "c028e56a-4621-468f-955f-94a6e19ef4ca@aef53"
+      ]
+    }
+  }
+}

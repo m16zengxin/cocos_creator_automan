@@ -1,0 +1,131 @@
+{
+  "ver": "1.0.17",
+  "importer": "image",
+  "imported": true,
+  "uuid": "cc4485f8-ee0d-4b4a-a1ae-b90b3f7ce7bd",
+  "files": [
+    ".jpg",
+    ".json"
+  ],
+  "subMetas": {
+    "b47c0": {
+      "importer": "erp-texture-cube",
+      "uuid": "cc4485f8-ee0d-4b4a-a1ae-b90b3f7ce7bd@b47c0",
+      "displayName": "cocos-002",
+      "id": "b47c0",
+      "name": "textureCube",
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {
+        "74afd": {
+          "importer": "erp-texture-cube-face",
+          "uuid": "cc4485f8-ee0d-4b4a-a1ae-b90b3f7ce7bd@b47c0@74afd",
+          "displayName": "",
+          "id": "74afd",
+          "name": "right",
+          "ver": "1.0.4",
+          "imported": true,
+          "files": [
+            ".png",
+            ".json"
+          ],
+          "subMetas": {},
+          "userData": {}
+        },
+        "8fd34": {
+          "importer": "erp-texture-cube-face",
+          "uuid": "cc4485f8-ee0d-4b4a-a1ae-b90b3f7ce7bd@b47c0@8fd34",
+          "displayName": "",
+          "id": "8fd34",
+          "name": "left",
+          "ver": "1.0.4",
+          "imported": true,
+          "files": [
+            ".png",
+            ".json"
+          ],
+          "subMetas": {},
+          "userData": {}
+        },
+        "bb97f": {
+          "importer": "erp-texture-cube-face",
+          "uuid": "cc4485f8-ee0d-4b4a-a1ae-b90b3f7ce7bd@b47c0@bb97f",
+          "displayName": "",
+          "id": "bb97f",
+          "name": "top",
+          "ver": "1.0.4",
+          "imported": true,
+          "files": [
+            ".png",
+            ".json"
+          ],
+          "subMetas": {},
+          "userData": {}
+        },
+        "7d38f": {
+          "importer": "erp-texture-cube-face",
+          "uuid": "cc4485f8-ee0d-4b4a-a1ae-b90b3f7ce7bd@b47c0@7d38f",
+          "displayName": "",
+          "id": "7d38f",
+          "name": "bottom",
+          "ver": "1.0.4",
+          "imported": true,
+          "files": [
+            ".png",
+            ".json"
+          ],
+          "subMetas": {},
+          "userData": {}
+        },
+        "e9a6d": {
+          "importer": "erp-texture-cube-face",
+          "uuid": "cc4485f8-ee0d-4b4a-a1ae-b90b3f7ce7bd@b47c0@e9a6d",
+          "displayName": "",
+          "id": "e9a6d",
+          "name": "front",
+          "ver": "1.0.4",
+          "imported": true,
+          "files": [
+            ".png",
+            ".json"
+          ],
+          "subMetas": {},
+          "userData": {}
+        },
+        "40c10": {
+          "importer": "erp-texture-cube-face",
+          "uuid": "cc4485f8-ee0d-4b4a-a1ae-b90b3f7ce7bd@b47c0@40c10",
+          "displayName": "",
+          "id": "40c10",
+          "name": "back",
+          "ver": "1.0.4",
+          "imported": true,
+          "files": [
+            ".png",
+            ".json"
+          ],
+          "subMetas": {},
+          "userData": {}
+        }
+      },
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "linear",
+        "premultiplyAlpha": false,
+        "anisotropy": 1,
+        "isRGBE": false,
+        "imageDatabaseUri": "db://assets/textures/pic/cocos-002.jpg"
+      }
+    }
+  },
+  "userData": {
+    "type": "texture cube",
+    "redirect": "cc4485f8-ee0d-4b4a-a1ae-b90b3f7ce7bd@b47c0"
+  }
+}

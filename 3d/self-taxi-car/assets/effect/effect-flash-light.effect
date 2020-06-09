@@ -1,0 +1,188 @@
+// Effect Syntax Guide: https://github.com/cocos-creator/docs-3d/blob/master/zh/material-system/effect-syntax.md
+
+CCEffect %{
+  techniques:
+  - name: opaque
+    passes:
+    - vert: general-vs:vert # builtin header
+      frag: unlit-fs:frag
+      properties: &props
+        mainTexture:    { value: white }
+        mainColor:      { value: [1, 1, 1, 1], editor: { type: color } }
+        tilingOffset: { value: [1, 1, 0, 0] }
+        allOffset:      { value: [0, -10, 0, 0] }
+        dist:           { value: 100}
+        lightColor:     { value: [1, 1, 1, 1], editor: {type: color, tooltip: "发光颜色"} }
+        lightCenterPoint: { value: [0.5, 0.5, 0.5, 0.5] }
+        circleRadius:   { value: 0.1}
+  - name: transparent
+    passes:
+    - vert: general-vs:vert # builtin header
+      frag: unlit-fs:frag
+      blendState:
+        targets:
+        - blend: true
+          blendSrc: src_alpha
+          blendDst: one_minus_src_alpha
+          blendSrcAlpha: src_alpha
+          blendDstAlpha: one_minus_src_alpha
+      properties: *props
+}%
+
+CCProgram general-vs %{
+  precision highp float;
+  #include <cc-global>
+  #include <cc-local-batch>
+  #include <input>
+
+  #if USE_VERTEX_COLOR
+    in vec4 a_color;
+    out vec4 v_color;
+  #endif
+
+  #if USE_TEXTURE
+    in vec2 a_texCoord;
+    out vec2 v_uv;
+    uniform TexCoords {
+      vec4 tilingOffset;
+    };
+  #endif
+
+  #if USE_CURVED
+    uniform Curved {
+      vec4 allOffset;
+      float dist;
+    };
+  #endif
+
+  highp vec4 vert () {
+    vec4 position;
+    CCVertInput(position);
+
+    highp mat4 matWorld;
+    CCGetWorldMatrix(matWorld);
+
+    // highp vec4 pos = cc_matProj * (cc_matView * matWorld) * position;
+
+    highp vec4 vpos = cc_matView * matWorld * position;
+
+    #if USE_CURVED
+      highp float zOff = vpos.z / dist;
+      vpos += allOffset * zOff * zOff;
+    #endif
+
+    highp vec4 pos = cc_matProj * vpos;
+
+    #if USE_TEXTURE
+      v_uv = a_texCoord;
+      #if FLIP_UV
+        v_uv.y = 1.0 - v_uv.y;
+      #endif
+      v_uv = v_uv * tilingOffset.xy + tilingOffset.zw;
+    #endif
+
+    #if USE_VERTEX_COLOR
+      v_color = a_color;
+    #endif
+
+    return pos;
+  }
+}%
+
+CCProgram unlit-fs %{
+  precision highp float;
+  #include <output>
+
+  #if USE_VERTEX_COLOR
+    in vec4 v_color;
+  #endif
+
+   #if USE_TEXTURE
+  in vec2 v_uv;
+  uniform sampler2D mainTexture;
+  #endif
+
+  #if USE_COLOR
+  uniform Constant {
+    vec4 mainColor;
+  };
+  #endif
+
+  #if SHOW_FLASH_LIGHT
+    uniform FlashLight {
+      vec4 lightColor;
+      vec4 lightCenterPoint;
+      float circleRadius;
+    };
+
+    vec4 getCircleLight(){
+      vec4 tempColor = lightColor;
+      float dis = distance(v_uv, lightCenterPoint.xy);
+      
+      if(dis < circleRadius){
+        float a = 1.0 - dis/(circleRadius);
+        return lightColor * a;
+      } else {
+        return vec4(0, 0, 0, 0);
+      }
+    }
+
+    float checkCircle(vec2 center, vec2 pos, float radius, float thickness, float stepRadius)
+    {
+        float len = length(pos - center);
+        float distMod = mod(len, stepRadius+thickness);
+        return distMod > radius && distMod < radius + thickness ? 1.0 : 0.0;
+    }
+  #endif
+
+  vec4 frag () {
+    vec4 o = vec4(1, 1, 1, 1);
+
+    #if USE_TEXTURE
+    o *= texture(mainTexture, v_uv);
+    #endif
+
+    #if USE_COLOR
+      o *= mainColor;
+    #endif
+
+    #if USE_VERTEX_COLOR
+      o *= v_color;
+    #endif
+
+    #if SHOW_FLASH_LIGHT
+      vec4 color_dest = o;
+      vec4 color_src = getCircleLight();
+
+      o = color_dest * color_dest.a + color_src;
+
+      // float maxRadius = 20.0;
+      // float radius = max( maxRadius * mod(cc_time.x, 1.0), 1.0);
+
+      // vec3 col = mix( vec3(1.0), vec3(0.0), 1.0);
+      // o +=  vec4(0.0, 0.0, 0.0, 0.3);
+      float startTime = 1.0;
+      vec2 uv = v_uv;
+      vec2 uvDir = normalize(v_uv - lightCenterPoint.xy);
+        float dis = distance(v_uv, lightCenterPoint.xy);
+        float dis_time = startTime - cc_time.x + dis * 3.0;
+        if ( startTime > 0.0 && dis_time < 0.0 && dis_time > -0.1 ){
+          // startTime = 1.0;
+          uv += 0.01  * uvDir * sin(1.0 * cc_time.x - dis * 10.0);
+          // uv = uvDir;
+        }else{
+          // startTime = cc_time.x;
+        }
+        // if ( startTime - cc_time.x < -10.0 ) {
+        //   startTime = cc_time.x;
+        //   dis_time = startTime - cc_time.x + dis * 3.0;
+        // }
+        if(dis <= 0.2 && dis >= 0.1){
+          // uv = uvDir;
+        }
+        // o *= texture(mainTexture, uv);
+    #endif
+
+    return CCFragOutput(o);
+  }
+}%

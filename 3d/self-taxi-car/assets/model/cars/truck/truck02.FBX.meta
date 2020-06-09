@@ -1,0 +1,123 @@
+{
+  "ver": "1.3.19",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "76895652-a8ee-46ce-bf1f-80e2d4592693",
+  "files": [],
+  "subMetas": {
+    "76763": {
+      "importer": "gltf-scene",
+      "uuid": "76895652-a8ee-46ce-bf1f-80e2d4592693@76763",
+      "displayName": "",
+      "id": "76763",
+      "name": "truck02.prefab",
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "gltfIndex": 0
+      }
+    },
+    "5d0b5": {
+      "ver": "1.0.9",
+      "importer": "gltf-mesh",
+      "uuid": "76895652-a8ee-46ce-bf1f-80e2d4592693@5d0b5",
+      "imported": true,
+      "files": [
+        ".json",
+        ".bin"
+      ],
+      "subMetas": {},
+      "userData": {
+        "gltfIndex": 0
+      },
+      "displayName": "",
+      "id": "5d0b5",
+      "name": "car_005_0.mesh"
+    },
+    "a9082": {
+      "ver": "1.0.2",
+      "importer": "gltf-embeded-image",
+      "uuid": "76895652-a8ee-46ce-bf1f-80e2d4592693@a9082",
+      "imported": true,
+      "files": [
+        ".jpg",
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "gltfIndex": 0
+      },
+      "displayName": "",
+      "id": "a9082",
+      "name": "truck02Silvery.jpg.image"
+    },
+    "442db": {
+      "ver": "1.0.19",
+      "importer": "texture",
+      "uuid": "76895652-a8ee-46ce-bf1f-80e2d4592693@442db",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "premultiplyAlpha": false,
+        "anisotropy": 1,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "76895652-a8ee-46ce-bf1f-80e2d4592693@a9082"
+      },
+      "displayName": "",
+      "id": "442db",
+      "name": "贴图 #4.texture"
+    },
+    "1fbcb": {
+      "ver": "1.0.14",
+      "importer": "gltf-material",
+      "uuid": "76895652-a8ee-46ce-bf1f-80e2d4592693@1fbcb",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "gltfIndex": 0
+      },
+      "displayName": "",
+      "id": "1fbcb",
+      "name": "Material #28.material"
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "name": "truck02Silvery.jpg",
+        "uri": "76895652-a8ee-46ce-bf1f-80e2d4592693@a9082"
+      }
+    ],
+    "redirect": "76895652-a8ee-46ce-bf1f-80e2d4592693@76763",
+    "assetFinder": {
+      "meshes": [
+        "76895652-a8ee-46ce-bf1f-80e2d4592693@5d0b5"
+      ],
+      "skeletons": [],
+      "textures": [
+        "76895652-a8ee-46ce-bf1f-80e2d4592693@442db"
+      ],
+      "materials": [
+        "76895652-a8ee-46ce-bf1f-80e2d4592693@1fbcb"
+      ],
+      "scenes": [
+        "76895652-a8ee-46ce-bf1f-80e2d4592693@76763"
+      ]
+    }
+  }
+}
